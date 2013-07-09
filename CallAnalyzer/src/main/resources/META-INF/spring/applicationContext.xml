@@ -68,4 +68,7 @@
         <property name="persistenceUnitName" value="persistenceUnit"/>
         <property name="dataSource" ref="dataSource"/>
     </bean>
+    <bean id="wicketApplication" class="sk.jazzman.callanalyzer.application.CallAnalyzerApplication">
+    
+    </bean>
 </beans>
