@@ -68,7 +68,16 @@
         <property name="persistenceUnitName" value="persistenceUnit"/>
         <property name="dataSource" ref="dataSource"/>
     </bean>
-    <bean id="wicketApplication" class="sk.jazzman.callanalyzer.application.CallAnalyzerApplication">
     
+    <!-- Wicket -->
+    <bean id="wicketApplication" class="sk.jazzman.callanalyzer.application.CallAnalyzerApplication">
+    </bean>
+    <bean id="configuration" class="org.apache.commons.configuration.XMLConfiguration">
+    	<constructor-arg type="java.net.URL" name="url" 
+    		value="classpath:caconfiguration.xml">
+    	</constructor-arg>
+    	<property name="expressionEngine">
+    		<bean class="org.apache.commons.configuration.tree.xpath.XPathExpressionEngine"></bean>
+    	</property>
     </bean>
 </beans>

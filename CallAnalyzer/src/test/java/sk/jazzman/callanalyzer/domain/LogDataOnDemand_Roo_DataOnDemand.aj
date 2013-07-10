@@ -5,12 +5,17 @@ package sk.jazzman.callanalyzer.domain;
 
 import java.security.SecureRandom;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 import org.springframework.stereotype.Component;
+import sk.jazzman.callanalyzer.domain.CAUser;
+import sk.jazzman.callanalyzer.domain.CallType;
 import sk.jazzman.callanalyzer.domain.Log;
 import sk.jazzman.callanalyzer.domain.LogDataOnDemand;
 
@@ -24,7 +29,52 @@ privileged aspect LogDataOnDemand_Roo_DataOnDemand {
     
     public Log LogDataOnDemand.getNewTransientLog(int index) {
         Log obj = new Log();
+        setCallNumber(obj, index);
+        setCallType(obj, index);
+        setDuration(obj, index);
+        setId(obj, index);
+        setImportTime(obj, index);
+        setOwner(obj, index);
+        setStartCall(obj, index);
         return obj;
+    }
+    
+    public void LogDataOnDemand.setCallNumber(Log obj, int index) {
+        String callNumber = "callNumber_" + index;
+        obj.setCallNumber(callNumber);
+    }
+    
+    public void LogDataOnDemand.setCallType(Log obj, int index) {
+        CallType callType = null;
+        obj.setCallType(callType);
+    }
+    
+    public void LogDataOnDemand.setDuration(Log obj, int index) {
+        Integer duration = new Integer(index);
+        if (duration < 0) {
+            duration = 0;
+        }
+        obj.setDuration(duration);
+    }
+    
+    public void LogDataOnDemand.setId(Log obj, int index) {
+        Long id = new Integer(index).longValue();
+        obj.setId(id);
+    }
+    
+    public void LogDataOnDemand.setImportTime(Log obj, int index) {
+        Date importTime = new GregorianCalendar(Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH), Calendar.getInstance().get(Calendar.HOUR_OF_DAY), Calendar.getInstance().get(Calendar.MINUTE), Calendar.getInstance().get(Calendar.SECOND) + new Double(Math.random() * 1000).intValue()).getTime();
+        obj.setImportTime(importTime);
+    }
+    
+    public void LogDataOnDemand.setOwner(Log obj, int index) {
+        CAUser owner = null;
+        obj.setOwner(owner);
+    }
+    
+    public void LogDataOnDemand.setStartCall(Log obj, int index) {
+        Date startCall = new GregorianCalendar(Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH), Calendar.getInstance().get(Calendar.HOUR_OF_DAY), Calendar.getInstance().get(Calendar.MINUTE), Calendar.getInstance().get(Calendar.SECOND) + new Double(Math.random() * 1000).intValue()).getTime();
+        obj.setStartCall(startCall);
     }
     
     public Log LogDataOnDemand.getSpecificLog(int index) {
@@ -36,14 +86,14 @@ privileged aspect LogDataOnDemand_Roo_DataOnDemand {
             index = data.size() - 1;
         }
         Log obj = data.get(index);
-        Long id = obj.getId();
+        Long id = obj.getId_();
         return Log.findLog(id);
     }
     
     public Log LogDataOnDemand.getRandomLog() {
         init();
         Log obj = data.get(rnd.nextInt(data.size()));
-        Long id = obj.getId();
+        Long id = obj.getId_();
         return Log.findLog(id);
     }
     

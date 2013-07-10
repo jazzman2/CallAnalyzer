@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+
+	<!-- Call Types -->
+	<callType>
+		<value name="incomming">
+			<id>1</id>
+		</value>
+		<value name="outgoing">
+			<id>2</id>
+		</value>
+		<value name="missed">
+			<id>3</id>
+		</value>
+	</callType>
+</configuration>

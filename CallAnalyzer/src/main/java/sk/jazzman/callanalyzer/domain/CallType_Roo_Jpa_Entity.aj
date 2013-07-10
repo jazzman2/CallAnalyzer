@@ -9,34 +9,34 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Version;
-import sk.jazzman.callanalyzer.domain.Log;
+import sk.jazzman.callanalyzer.domain.CallType;
 
-privileged aspect Log_Roo_Jpa_Entity {
+privileged aspect CallType_Roo_Jpa_Entity {
     
-    declare @type: Log: @Entity;
+    declare @type: CallType: @Entity;
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_")
-    private Long Log.id_;
+    private Long CallType.id_;
     
     @Version
     @Column(name = "version")
-    private Integer Log.version;
+    private Integer CallType.version;
     
-    public Long Log.getId_() {
+    public Long CallType.getId_() {
         return this.id_;
     }
     
-    public void Log.setId_(Long id) {
+    public void CallType.setId_(Long id) {
         this.id_ = id;
     }
     
-    public Integer Log.getVersion() {
+    public Integer CallType.getVersion() {
         return this.version;
     }
     
-    public void Log.setVersion(Integer version) {
+    public void CallType.setVersion(Integer version) {
         this.version = version;
     }
     

@@ -40,11 +40,11 @@ privileged aspect LogIntegrationTest_Roo_IntegrationTest {
     public void LogIntegrationTest.testFindLog() {
         Log obj = dod.getRandomLog();
         Assert.assertNotNull("Data on demand for 'Log' failed to initialize correctly", obj);
-        Long id = obj.getId();
+        Long id = obj.getId_();
         Assert.assertNotNull("Data on demand for 'Log' failed to provide an identifier", id);
         obj = Log.findLog(id);
         Assert.assertNotNull("Find method for 'Log' illegally returned null for id '" + id + "'", obj);
-        Assert.assertEquals("Find method for 'Log' returned the incorrect identifier", id, obj.getId());
+        Assert.assertEquals("Find method for 'Log' returned the incorrect identifier", id, obj.getId_());
     }
     
     @Test
@@ -73,7 +73,7 @@ privileged aspect LogIntegrationTest_Roo_IntegrationTest {
     public void LogIntegrationTest.testFlush() {
         Log obj = dod.getRandomLog();
         Assert.assertNotNull("Data on demand for 'Log' failed to initialize correctly", obj);
-        Long id = obj.getId();
+        Long id = obj.getId_();
         Assert.assertNotNull("Data on demand for 'Log' failed to provide an identifier", id);
         obj = Log.findLog(id);
         Assert.assertNotNull("Find method for 'Log' illegally returned null for id '" + id + "'", obj);
@@ -87,14 +87,14 @@ privileged aspect LogIntegrationTest_Roo_IntegrationTest {
     public void LogIntegrationTest.testMergeUpdate() {
         Log obj = dod.getRandomLog();
         Assert.assertNotNull("Data on demand for 'Log' failed to initialize correctly", obj);
-        Long id = obj.getId();
+        Long id = obj.getId_();
         Assert.assertNotNull("Data on demand for 'Log' failed to provide an identifier", id);
         obj = Log.findLog(id);
         boolean modified =  dod.modifyLog(obj);
         Integer currentVersion = obj.getVersion();
         Log merged = obj.merge();
         obj.flush();
-        Assert.assertEquals("Identifier of merged object not the same as identifier of original object", merged.getId(), id);
+        Assert.assertEquals("Identifier of merged object not the same as identifier of original object", merged.getId_(), id);
         Assert.assertTrue("Version for 'Log' failed to increment on merge and flush directive", (currentVersion != null && obj.getVersion() > currentVersion) || !modified);
     }
     
@@ -103,7 +103,7 @@ privileged aspect LogIntegrationTest_Roo_IntegrationTest {
         Assert.assertNotNull("Data on demand for 'Log' failed to initialize correctly", dod.getRandomLog());
         Log obj = dod.getNewTransientLog(Integer.MAX_VALUE);
         Assert.assertNotNull("Data on demand for 'Log' failed to provide a new transient entity", obj);
-        Assert.assertNull("Expected 'Log' identifier to be null", obj.getId());
+        Assert.assertNull("Expected 'Log' identifier to be null", obj.getId_());
         try {
             obj.persist();
         } catch (final ConstraintViolationException e) {
@@ -115,14 +115,14 @@ privileged aspect LogIntegrationTest_Roo_IntegrationTest {
             throw new IllegalStateException(msg.toString(), e);
         }
         obj.flush();
-        Assert.assertNotNull("Expected 'Log' identifier to no longer be null", obj.getId());
+        Assert.assertNotNull("Expected 'Log' identifier to no longer be null", obj.getId_());
     }
     
     @Test
     public void LogIntegrationTest.testRemove() {
         Log obj = dod.getRandomLog();
         Assert.assertNotNull("Data on demand for 'Log' failed to initialize correctly", obj);
-        Long id = obj.getId();
+        Long id = obj.getId_();
         Assert.assertNotNull("Data on demand for 'Log' failed to provide an identifier", id);
         obj = Log.findLog(id);
         obj.remove();
