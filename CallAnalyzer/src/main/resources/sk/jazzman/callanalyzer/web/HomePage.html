@@ -1,15 +1,23 @@
-<html>
-	<!-- Head -->
-	<head>
-		<title>HomePage-CallAnalyzer</title>
-		<link rel="stylesheet" type="text/css" href="style.css"/>
-	</head>
-	
-	<!-- Body -->
-	<body>
-		<form wicket:id="form">
-			<span wicket:id="message">Message</span>	
-		</form>
-	</body>
-	
+<html >
+<!-- Head -->
+<head>
+<title>HomePage-CallAnalyzer</title>
+<link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+
+<!-- Body -->
+<body>
+	<form wicket:id="form">
+		<fieldset>
+			<legend>
+				<wicket:message key="Upload" />
+			</legend>
+
+			<label for="upload"></label> <input wicket:id="selectFile" type="file" /> 
+				<span wicket:id="upload"><wicket:message key="Upload" /> </span>
+		</fieldset>
+		<span wicket:id="message">Message</span>
+	</form>
+</body>
+
 </html>
