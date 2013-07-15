@@ -14,7 +14,9 @@
 			</legend>
 
 			<label for="upload"></label> <input wicket:id="selectFile" type="file" /> 
-				<span wicket:id="upload"><wicket:message key="Upload" /> </span>
+				<button wicket:id="upload"><wicket:message key="Upload" /> </button>
+				<p>
+				<span wicket:id="uploadProgressBar">[uploadProgressbar]</span>
 		</fieldset>
 		<span wicket:id="message">Message</span>
 	</form>

@@ -80,4 +80,8 @@
     		<bean class="org.apache.commons.configuration.tree.xpath.XPathExpressionEngine"></bean>
     	</property>
     </bean>
+    
+    <bean id="xmlParser" class="sk.jazzman.callanalyzer.application.XMLParser">
+    
+    </bean>
 </beans>

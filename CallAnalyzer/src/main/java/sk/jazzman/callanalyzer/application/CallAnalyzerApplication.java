@@ -37,6 +37,8 @@ public class CallAnalyzerApplication extends WebApplication implements Serializa
 		BootstrapSettings bootstrapSettins = new BootstrapSettings();
 
 		Bootstrap.install(get(), bootstrapSettins);
+
+		getApplicationSettings().setUploadProgressUpdatesEnabled(true);
 	}
 
 	@Override
