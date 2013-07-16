@@ -4,10 +4,10 @@
 package sk.jazzman.callanalyzer.domain;
 
 import org.springframework.beans.factory.annotation.Configurable;
-import sk.jazzman.callanalyzer.domain.LogIntegrationTest;
+import sk.jazzman.callanalyzer.domain.InfoType;
 
-privileged aspect LogIntegrationTest_Roo_Configurable {
+privileged aspect InfoType_Roo_Configurable {
     
-    declare @type: LogIntegrationTest: @Configurable;
+    declare @type: InfoType: @Configurable;
     
 }

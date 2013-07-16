@@ -15,7 +15,7 @@ import com.thoughtworks.xstream.annotations.XStreamImplicit;
  * 
  */
 @XStreamAlias("calls")
-public class Logs<T extends Log> {
+public class Logs<T extends CallType> {
 	@XStreamImplicit(itemFieldName = "call")
 	private final List<T> logs = new Vector<T>();
 

@@ -1,8 +1,6 @@
 package sk.jazzman.callanalyzer.domain;
-
-import javax.persistence.Column;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
-
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
@@ -10,17 +8,27 @@ import org.springframework.roo.addon.tostring.RooToString;
 @RooJavaBean
 @RooToString
 @RooJpaActiveRecord
-public class CAUser extends CAEntity {
-	/** Serial id */
-	private static final long serialVersionUID = 1L;
+public class Info {
 
-	/**
+    /**
      */
-	@NotNull
-	@Column(unique = true)
-	private Long id;
+    @NotNull
+    private Long id;
 
-	/**
+    /**
      */
-	private String name;
+    @NotNull
+    private String infoValue;
+
+    /**
+     */
+    @NotNull
+    @ManyToOne
+    private CAUser owner;
+
+    /**
+     */
+    @NotNull
+    @ManyToOne
+    private InfoType type;
 }

@@ -6,6 +6,7 @@ package sk.jazzman.callanalyzer.domain;
 import java.util.Date;
 import sk.jazzman.callanalyzer.domain.CAUser;
 import sk.jazzman.callanalyzer.domain.CallType;
+import sk.jazzman.callanalyzer.domain.Info;
 import sk.jazzman.callanalyzer.domain.Log;
 
 privileged aspect Log_Roo_JavaBean {
@@ -18,36 +19,28 @@ privileged aspect Log_Roo_JavaBean {
         this.id = id;
     }
     
-    public String Log.getCallNumber() {
+    public Info Log.getCallNumber() {
         return this.callNumber;
     }
     
-    public void Log.setCallNumber(String callNumber) {
+    public void Log.setCallNumber(Info callNumber) {
         this.callNumber = callNumber;
     }
     
-    public Integer Log.getDuration() {
+    public Long Log.getDuration() {
         return this.duration;
     }
     
-    public void Log.setDuration(Integer duration) {
+    public void Log.setDuration(Long duration) {
         this.duration = duration;
     }
     
-    public Date Log.getStartCall() {
-        return this.startCall;
+    public Date Log.getCallDate() {
+        return this.callDate;
     }
     
-    public void Log.setStartCall(Date startCall) {
-        this.startCall = startCall;
-    }
-    
-    public CallType Log.getCallType() {
-        return this.callType;
-    }
-    
-    public void Log.setCallType(CallType callType) {
-        this.callType = callType;
+    public void Log.setCallDate(Date callDate) {
+        this.callDate = callDate;
     }
     
     public CAUser Log.getOwner() {
@@ -64,6 +57,14 @@ privileged aspect Log_Roo_JavaBean {
     
     public void Log.setImportTime(Date importTime) {
         this.importTime = importTime;
+    }
+    
+    public CallType Log.getCallType() {
+        return this.callType;
+    }
+    
+    public void Log.setCallType(CallType callType) {
+        this.callType = callType;
     }
     
 }

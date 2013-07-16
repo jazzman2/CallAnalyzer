@@ -7,69 +7,69 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import org.springframework.transaction.annotation.Transactional;
-import sk.jazzman.callanalyzer.domain.CAUser;
+import sk.jazzman.callanalyzer.domain.Info;
 
-privileged aspect CAUser_Roo_Jpa_ActiveRecord {
+privileged aspect Info_Roo_Jpa_ActiveRecord {
     
     @PersistenceContext
-    transient EntityManager CAUser.entityManager;
+    transient EntityManager Info.entityManager;
     
-    public static final EntityManager CAUser.entityManager() {
-        EntityManager em = new CAUser().entityManager;
+    public static final EntityManager Info.entityManager() {
+        EntityManager em = new Info().entityManager;
         if (em == null) throw new IllegalStateException("Entity manager has not been injected (is the Spring Aspects JAR configured as an AJC/AJDT aspects library?)");
         return em;
     }
     
-    public static long CAUser.countCAUsers() {
-        return entityManager().createQuery("SELECT COUNT(o) FROM CAUser o", Long.class).getSingleResult();
+    public static long Info.countInfoes() {
+        return entityManager().createQuery("SELECT COUNT(o) FROM Info o", Long.class).getSingleResult();
     }
     
-    public static List<CAUser> CAUser.findAllCAUsers() {
-        return entityManager().createQuery("SELECT o FROM CAUser o", CAUser.class).getResultList();
+    public static List<Info> Info.findAllInfoes() {
+        return entityManager().createQuery("SELECT o FROM Info o", Info.class).getResultList();
     }
     
-    public static CAUser CAUser.findCAUser(Long id_) {
+    public static Info Info.findInfo(Long id_) {
         if (id_ == null) return null;
-        return entityManager().find(CAUser.class, id_);
+        return entityManager().find(Info.class, id_);
     }
     
-    public static List<CAUser> CAUser.findCAUserEntries(int firstResult, int maxResults) {
-        return entityManager().createQuery("SELECT o FROM CAUser o", CAUser.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+    public static List<Info> Info.findInfoEntries(int firstResult, int maxResults) {
+        return entityManager().createQuery("SELECT o FROM Info o", Info.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     
     @Transactional
-    public void CAUser.persist() {
+    public void Info.persist() {
         if (this.entityManager == null) this.entityManager = entityManager();
         this.entityManager.persist(this);
     }
     
     @Transactional
-    public void CAUser.remove() {
+    public void Info.remove() {
         if (this.entityManager == null) this.entityManager = entityManager();
         if (this.entityManager.contains(this)) {
             this.entityManager.remove(this);
         } else {
-            CAUser attached = CAUser.findCAUser(this.id_);
+            Info attached = Info.findInfo(this.id_);
             this.entityManager.remove(attached);
         }
     }
     
     @Transactional
-    public void CAUser.flush() {
+    public void Info.flush() {
         if (this.entityManager == null) this.entityManager = entityManager();
         this.entityManager.flush();
     }
     
     @Transactional
-    public void CAUser.clear() {
+    public void Info.clear() {
         if (this.entityManager == null) this.entityManager = entityManager();
         this.entityManager.clear();
     }
     
     @Transactional
-    public CAUser CAUser.merge() {
+    public Info Info.merge() {
         if (this.entityManager == null) this.entityManager = entityManager();
-        CAUser merged = this.entityManager.merge(this);
+        Info merged = this.entityManager.merge(this);
         this.entityManager.flush();
         return merged;
     }

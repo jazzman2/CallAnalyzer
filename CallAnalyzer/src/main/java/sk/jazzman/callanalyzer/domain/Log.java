@@ -2,11 +2,9 @@ package sk.jazzman.callanalyzer.domain;
 
 import java.util.Date;
 
-import javax.persistence.Column;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -17,47 +15,37 @@ import org.springframework.roo.addon.tostring.RooToString;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
 
+@XStreamAlias("call")
 @RooJavaBean
 @RooToString
 @RooJpaActiveRecord
-@XStreamAlias("call")
-public class Log {
+public class Log extends CAEntity {
+	/** Serial id */
+	private static final long serialVersionUID = 1L;
 
 	/**
      */
 	@NotNull
-	@Column(unique = true)
 	private Long id;
 
 	/**
      */
-	@XStreamAlias("number")
-	@XStreamAsAttribute
 	@NotNull
-	private String callNumber;
+	@ManyToOne
+	private Info callNumber;
 
 	/**
      */
-	@XStreamAlias("duraion")
-	@XStreamAsAttribute
+	@XStreamAlias("duration")
 	@NotNull
-	@Min(0L)
-	private Integer duration;
+	private Long duration;
 
 	/**
      */
 	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(style = "M-")
-	private Date startCall;
-
-	/**
-     */
-	@XStreamAlias("type")
-	@XStreamAsAttribute
-	@NotNull
-	@ManyToOne
-	private CallType callType;
+	private Date callDate;
 
 	/**
      */
@@ -71,4 +59,11 @@ public class Log {
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(style = "M-")
 	private Date importTime;
+
+	/**
+     */
+	@NotNull
+	@ManyToOne
+	@XStreamAsAttribute
+	private CallType callType;
 }

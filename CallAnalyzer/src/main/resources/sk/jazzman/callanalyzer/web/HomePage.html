@@ -1,4 +1,8 @@
 <html >
+
+<style type="text/css">
+</style>
+
 <!-- Head -->
 <head>
 <title>HomePage-CallAnalyzer</title>
@@ -17,6 +21,14 @@
 				<button wicket:id="upload"><wicket:message key="Upload" /> </button>
 				<p>
 				<span wicket:id="uploadProgressBar">[uploadProgressbar]</span>
+		</fieldset>
+		
+		<fieldset>
+			<legend><wicket:message key="Calls" /></legend>
+			
+			<table class="dataview" wicket:id="table">
+				[table]
+			</table>
 		</fieldset>
 		<span wicket:id="message">Message</span>
 	</form>

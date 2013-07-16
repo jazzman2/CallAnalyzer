@@ -4,10 +4,10 @@
 package sk.jazzman.callanalyzer.domain;
 
 import org.springframework.beans.factory.annotation.Configurable;
-import sk.jazzman.callanalyzer.domain.LogDataOnDemand;
+import sk.jazzman.callanalyzer.domain.Info;
 
-privileged aspect LogDataOnDemand_Roo_Configurable {
+privileged aspect Info_Roo_Configurable {
     
-    declare @type: LogDataOnDemand: @Configurable;
+    declare @type: Info: @Configurable;
     
 }

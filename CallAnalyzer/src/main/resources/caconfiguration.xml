@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <configuration>
+	<table>
+		<rowsPerPage>
+			<value>10</value>
+		</rowsPerPage>
+	</table>
 
 	<!-- Call Types -->
 	<callType>
