@@ -12,8 +12,11 @@ import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
 
+import sk.jazzman.callanalyzer.converters.CallTypeConverter;
+
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
+import com.thoughtworks.xstream.annotations.XStreamConverter;
 
 @XStreamAlias("call")
 @RooJavaBean
@@ -64,6 +67,8 @@ public class Log extends CAEntity {
      */
 	@NotNull
 	@ManyToOne
+	@XStreamAlias("type")
 	@XStreamAsAttribute
+	@XStreamConverter(CallTypeConverter.class)
 	private CallType callType;
 }

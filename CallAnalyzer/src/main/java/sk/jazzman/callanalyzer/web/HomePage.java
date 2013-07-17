@@ -4,6 +4,7 @@
 package sk.jazzman.callanalyzer.web;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -29,7 +30,6 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.apache.wicket.util.lang.Bytes;
 
 import sk.jazzman.callanalyzer.application.XMLParser;
-import sk.jazzman.callanalyzer.domain.CallType;
 import sk.jazzman.callanalyzer.domain.Log;
 import sk.jazzman.callanalyzer.domain.Logs;
 
@@ -90,7 +90,7 @@ public class HomePage extends WebPage {
 			Long l = configuraion.getLong("callType/value[@name='incomming']/id", null);
 			List<Object> calltypes = configuraion.getList("callType/value/@name");
 
-			add(new Label("message", Model.of((Log) calltypes)));
+			add(new Label("message", Model.of((Serializable) calltypes)));
 
 			FileUploadField fuf;
 			add(fuf = new FileUploadField("selectFile"));
@@ -128,15 +128,15 @@ public class HomePage extends WebPage {
 			if (CollectionUtils.isNotEmpty(uploads)) {
 				for (FileUpload u : uploads) {
 					try {
-						Logs<CallType> logs = (Logs<CallType>) parser.fromXML(u.getInputStream());
+						Logs<Log> logs = (Logs<Log>) parser.fromXML(u.getInputStream());
 						List<Log> data = new ArrayList<Log>();
 
-						Iterator<CallType> i = logs.iterator();
-						// Log l;
-						// while (i.hasNext()) {
-						// l = i.next();
-						// data.add(l);
-						// }
+						Iterator<Log> i = logs.iterator();
+						Log l;
+						while (i.hasNext()) {
+							l = i.next();
+							data.add(l);
+						}
 
 						AjaxFallbackDefaultDataTable<?, ?> table = (AjaxFallbackDefaultDataTable<?, ?>) get("table");
 						((SortableLogDataProvider) (table).getDataProvider()).setData(data);
