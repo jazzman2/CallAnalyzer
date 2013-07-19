@@ -1,4 +1,4 @@
-<html >
+<html>
 
 <style type="text/css">
 </style>
@@ -6,7 +6,15 @@
 <!-- Head -->
 <head>
 <title>HomePage-CallAnalyzer</title>
-<link rel="stylesheet" type="text/css" href="style.css" />
+<!-- <wicket:link> -->
+<!-- 	<link rel="stylesheet" href="css/bootstrap.css" type="text/css"/> -->
+<!-- 	<link /> -->
+<!-- </wicket:link> -->
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
+<!-- <link wicket:id="bootstrapcss" rel="stylesheet" type="text/css" href="#"/> -->
+<!-- <link wicket:id="bootstrapresponsivecss" rel="stylesheet" type="text/css" href="#"/> -->
+<!-- <script wicket:id="bootstrapjs" type="text/javascript" id="bootstrap-js" defer="defer" src="#"> -->
+<!-- </script> -->
 </head>
 
 <!-- Body -->
@@ -17,17 +25,20 @@
 				<wicket:message key="Upload" />
 			</legend>
 
-			<label for="upload"></label> <input wicket:id="selectFile" type="file" /> 
-				<button wicket:id="upload"><wicket:message key="Upload" /> </button>
-				<p>
+			<label for="upload"></label> <input wicket:id="selectFile" type="file" />
+			<button wicket:id="upload">
+				<wicket:message key="Upload" />
+			</button>
+			<p>
 				<span wicket:id="uploadProgressBar">[uploadProgressbar]</span>
 		</fieldset>
-		
+
 		<fieldset>
-			<legend><wicket:message key="Calls" /></legend>
-			
-			<table class="dataview" wicket:id="table">
-				[table]
+			<legend>
+				<wicket:message key="Calls" />
+			</legend>
+
+			<table class="dataview" wicket:id="table">[table]
 			</table>
 		</fieldset>
 		<span wicket:id="message">Message</span>

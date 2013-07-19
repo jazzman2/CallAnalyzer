@@ -16,6 +16,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
 import sk.jazzman.callanalyzer.domain.CallType;
+import sk.jazzman.callanalyzer.domain.InfoType;
 import sk.jazzman.callanalyzer.web.HomePage;
 import de.agilecoders.wicket.core.Bootstrap;
 import de.agilecoders.wicket.core.settings.BootstrapSettings;
@@ -50,7 +51,7 @@ public class CallAnalyzerApplication extends WebApplication implements Serializa
 
 		getApplicationSettings().setUploadProgressUpdatesEnabled(true);
 
-		initConfiguraion();
+		// initConstants();
 	}
 
 	@Override
@@ -58,11 +59,29 @@ public class CallAnalyzerApplication extends WebApplication implements Serializa
 		return HomePage.class;
 	}
 
-	private void initConfiguraion() {
+	/**
+	 * Init constants object
+	 */
+	private void initConstants() {
 		CallType ct = new CallType();
 		ct.setId(Long.valueOf(1));
 		ct.setName("Incomming");
 		ct.persist();
+
+		ct = new CallType();
+		ct.setId(Long.valueOf(2));
+		ct.setName("Outgoing");
+		ct.persist();
+
+		ct = new CallType();
+		ct.setId(Long.valueOf(1));
+		ct.setName("Missing");
+		ct.persist();
+
+		InfoType it = new InfoType();
+		it.setId(Long.valueOf(1));
+		it.setName("Call");
+		it.persist();
 	}
 
 	@Override

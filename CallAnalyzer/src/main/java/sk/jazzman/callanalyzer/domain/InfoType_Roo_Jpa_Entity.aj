@@ -5,9 +5,6 @@ package sk.jazzman.callanalyzer.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.Version;
 import sk.jazzman.callanalyzer.domain.InfoType;
 
@@ -15,22 +12,9 @@ privileged aspect InfoType_Roo_Jpa_Entity {
     
     declare @type: InfoType: @Entity;
     
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_")
-    private Long InfoType.id_;
-    
     @Version
     @Column(name = "version")
     private Integer InfoType.version;
-    
-    public Long InfoType.getId_() {
-        return this.id_;
-    }
-    
-    public void InfoType.setId_(Long id) {
-        this.id_ = id;
-    }
     
     public Integer InfoType.getVersion() {
         return this.version;

@@ -28,9 +28,9 @@ privileged aspect CallType_Roo_Jpa_ActiveRecord {
         return entityManager().createQuery("SELECT o FROM CallType o", CallType.class).getResultList();
     }
     
-    public static CallType CallType.findCallType(Long id_) {
-        if (id_ == null) return null;
-        return entityManager().find(CallType.class, id_);
+    public static CallType CallType.findCallType(Long id) {
+        if (id == null) return null;
+        return entityManager().find(CallType.class, id);
     }
     
     public static List<CallType> CallType.findCallTypeEntries(int firstResult, int maxResults) {
@@ -49,7 +49,7 @@ privileged aspect CallType_Roo_Jpa_ActiveRecord {
         if (this.entityManager.contains(this)) {
             this.entityManager.remove(this);
         } else {
-            CallType attached = CallType.findCallType(this.id_);
+            CallType attached = CallType.findCallType(this.id);
             this.entityManager.remove(attached);
         }
     }

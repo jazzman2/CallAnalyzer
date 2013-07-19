@@ -28,9 +28,9 @@ privileged aspect InfoType_Roo_Jpa_ActiveRecord {
         return entityManager().createQuery("SELECT o FROM InfoType o", InfoType.class).getResultList();
     }
     
-    public static InfoType InfoType.findInfoType(Long id_) {
-        if (id_ == null) return null;
-        return entityManager().find(InfoType.class, id_);
+    public static InfoType InfoType.findInfoType(Long id) {
+        if (id == null) return null;
+        return entityManager().find(InfoType.class, id);
     }
     
     public static List<InfoType> InfoType.findInfoTypeEntries(int firstResult, int maxResults) {
@@ -49,7 +49,7 @@ privileged aspect InfoType_Roo_Jpa_ActiveRecord {
         if (this.entityManager.contains(this)) {
             this.entityManager.remove(this);
         } else {
-            InfoType attached = InfoType.findInfoType(this.id_);
+            InfoType attached = InfoType.findInfoType(this.id);
             this.entityManager.remove(attached);
         }
     }

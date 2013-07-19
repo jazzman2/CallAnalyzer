@@ -9,6 +9,7 @@ import java.io.InputStream;
 import org.apache.commons.logging.Log;
 
 import sk.jazzman.callanalyzer.converters.CallTypeConverter;
+import sk.jazzman.callanalyzer.converters.LogConverter;
 import sk.jazzman.callanalyzer.domain.CallType;
 import sk.jazzman.callanalyzer.domain.Logs;
 
@@ -37,6 +38,7 @@ public class XMLParser {
 		xstream.processAnnotations(Log.class);
 		xstream.processAnnotations(CallType.class);
 		xstream.registerConverter(new CallTypeConverter());
+		xstream.registerConverter(new LogConverter());
 	}
 
 	private XStream getXStream() {
