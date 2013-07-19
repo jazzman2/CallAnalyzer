@@ -57,7 +57,7 @@ public class LogConverter implements Converter {
 			log.setCallNumber(i);
 		}
 
-		o = reader.getAttribute("duraion");
+		o = reader.getAttribute("duration");
 		if (o != null) {
 			Long d = Long.parseLong((String) o);
 			log.setDuration(d);
