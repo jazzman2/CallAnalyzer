@@ -4,7 +4,9 @@
 package sk.jazzman.callanalyzer.application;
 
 import java.io.Serializable;
+import java.util.Collection;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.wicket.Page;
 import org.apache.wicket.injection.Injector;
 import org.apache.wicket.protocol.http.WebApplication;
@@ -12,8 +14,10 @@ import org.apache.wicket.spring.injection.annot.SpringComponentInjector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+import org.springframework.stereotype.Component;
 
 import sk.jazzman.callanalyzer.domain.CallType;
 import sk.jazzman.callanalyzer.domain.InfoType;
@@ -25,6 +29,7 @@ import de.agilecoders.wicket.core.settings.BootstrapSettings;
  * @author jkovalci
  * 
  */
+@Component(value = "wicketApplication")
 public class CallAnalyzerApplication extends WebApplication implements Serializable, ApplicationContextAware {
 
 	/** Serial id */
@@ -32,7 +37,17 @@ public class CallAnalyzerApplication extends WebApplication implements Serializa
 
 	protected static Logger log = LoggerFactory.getLogger(CallAnalyzerApplication.class);
 
+	@Autowired
 	private ApplicationContext context;
+
+	/**
+	 * Return instance of call analyzer application
+	 * 
+	 * @return
+	 */
+	public static CallAnalyzerApplication get() {
+		return (CallAnalyzerApplication) WebApplication.get();
+	}
 
 	/**
 	 * Init Application
@@ -52,6 +67,8 @@ public class CallAnalyzerApplication extends WebApplication implements Serializa
 		getApplicationSettings().setUploadProgressUpdatesEnabled(true);
 
 		// initConstants();
+
+		checkConstants();
 	}
 
 	@Override
@@ -87,5 +104,16 @@ public class CallAnalyzerApplication extends WebApplication implements Serializa
 	@Override
 	public void setApplicationContext(ApplicationContext context) throws BeansException {
 		this.context = context;
+	}
+
+	private void checkConstants() {
+		// Collection<CallType> list = CallType.createCriteria().list();
+		Collection<CallType> list = CallType.findAllCallTypes();
+
+		if (CollectionUtils.isNotEmpty(list)) {
+			for (CallType ct : list) {
+				log.info("CallType: " + ct.toString());
+			}
+		}
 	}
 }
